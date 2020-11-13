@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5abb27b7-f173-46ce-b8b0-05745a655c86" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="Vue Single File Component" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1k6Yavy7IEV3dbcnGY4dUprtnay" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="js.ns.project" value="true" />
+    <property name="js.ns.project.flavor" value="JavaScript" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\riste.pazarkoski\Desktop\online-shop\public" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5abb27b7-f173-46ce-b8b0-05745a655c86" name="Default Changelist" comment="" />
+      <created>1605022575168</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1605022575168</updated>
+      <workItem from="1605022576240" duration="2227000" />
+      <workItem from="1605041839121" duration="2023000" />
+      <workItem from="1605087738107" duration="519000" />
+      <workItem from="1605088398132" duration="34000" />
+      <workItem from="1605107047829" duration="14441000" />
+      <workItem from="1605168681610" duration="1860000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="2714" y="555" key="NewPhpFileDialog" timestamp="1605113225340">
+      <screen x="1920" y="112" width="1920" height="1040" />
+    </state>
+    <state x="2714" y="555" key="NewPhpFileDialog/0.0.1536.824/1920.112.1920.1040@1920.112.1920.1040" timestamp="1605113225340" />
+    <state x="2536" y="296" key="run.anything.popup" timestamp="1605119424989">
+      <screen x="1920" y="112" width="1920" height="1040" />
+    </state>
+    <state x="2536" y="296" key="run.anything.popup/0.0.1536.824/1920.112.1920.1040@1920.112.1920.1040" timestamp="1605119424989" />
+  </component>
+</project>
