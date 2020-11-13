@@ -4,7 +4,17 @@
          :style="{background: `url(${product.Image}) center center no-repeat`}"
          @click="loadLargeImage(product)"></div>
     <h3 class="product-title" :title="product.Title">{{ productTitle }}</h3>
-    <div class="product-price" v-html="price"></div>
+    <div class="product-price">
+      <div class="row">
+        <div class="col">
+          <strong>{{$store.state.currency}}</strong> {{product.Price}}
+        </div>
+        <div class="col">
+          <input type="number" class="inline-el form-control qty-field" v-model="qty" min="1" />
+          <span class="inline-el">Qty.</span>
+        </div>
+      </div>
+    </div>
     <span class="add-to-cart btn btn-primary btn-lg btn-block" @click="addToCart">Add To Cart</span>
   </div>
 </template>
@@ -14,7 +24,8 @@ export default {
   name: "Product",
   data() {
     return {
-      titleLen: 40
+      titleLen: 40,
+      qty: 1
     }
   },
   props: {
@@ -40,7 +51,11 @@ export default {
       this.$store.commit('selectProduct', product);
     },
     addToCart(){
-      this.$store.commit('addToCart', this.product);
+      // const clonedProduct = JSON.parse(JSON.stringify(this.product));
+      const clonedProduct = Object.assign({}, this.product);
+      clonedProduct.quantity = this.qty;
+      this.$store.commit('addToCart', clonedProduct);
+      console.log(this.$store.getters.getProducts);
     }
   }
 }
@@ -75,5 +90,14 @@ div.product-price {
 
 .add-to-cart {
   margin-bottom: 14px;
+}
+
+.inline-el{
+  display: block;
+  float: right;
+}
+.qty-field{
+  width: 70px;
+  margin: 0 5px 0 10px;
 }
 </style>

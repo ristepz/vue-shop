@@ -6,7 +6,9 @@ export const store = createStore({
       currency: 'EUR',
       products: [],
       selectedProduct: null,
-      cart: []
+      cart: [],
+      categories: [],
+      selectedCategory: null
     };
   },
   mutations: {
@@ -40,6 +42,15 @@ export const store = createStore({
      */
     addToCart(state, payload) {
       state.cart.push(payload);
+      localStorage.setItem('cart', JSON.stringify(state.cart));
+    },
+    /**
+     * Fill from local storage
+     * @param state
+     * @param payload
+     */
+    fillCartFromLocalStorage(state, payload) {
+      state.cart = payload;
     },
     /**
      * Remove from cart
@@ -51,6 +62,30 @@ export const store = createStore({
         return c.ID === payload;
       })
       state.cart.splice(productIndex, 1);
+      localStorage.setItem('cart', JSON.stringify(state.cart));
+    },
+    /**
+     * Set product categories
+     * @param state
+     * @param payload
+     */
+    setCategories(state, payload) {
+      state.categories = payload;
+    },
+    /**
+     * Select category
+     * @param state
+     * @param payload
+     */
+    setSelectedCat(state, payload) {
+      state.selectedCategory = payload;
+    },
+    /**
+     * Clear category filter
+     * @param state
+     */
+    clearCatFilter(state) {
+      state.selectedCategory = null;
     }
   },
   actions: {
@@ -59,8 +94,10 @@ export const store = createStore({
      * @param commit
      * @param payload
      */
-    setProducts({ commit }, payload = []) {
-      commit('setProducts', payload);
+    setProducts({ commit, state }, payload = {}) {
+      const { products, categories } = payload;
+      commit('setProducts', products);
+      commit('setCategories', categories);
     }
   },
   getters: {
@@ -70,15 +107,20 @@ export const store = createStore({
      * @returns {*[]|[]|(function(): default.computed.$store.getters.getProducts)}
      */
     getProducts(state) {
-      return state.products;
+      if (!state.selectedCategory) {
+        return state.products;
+      }
+      return state.products.filter(p => {
+        return p.Category === state.selectedCategory;
+      });
     },
     /**
      * Get cart amount
      * @param state
      */
-    getTotalCartAmount(state){
-      const total = state.cart.reduce((acc, current)=>{
-        acc += current.Price;
+    getTotalCartAmount(state) {
+      const total = state.cart.reduce((acc, current) => {
+        acc += current.Price * current.quantity;
         return acc;
       }, 0)
       return `${state.currency} ${total.toFixed(2)}`

@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid">
-    <Modal v-if="showModal" :product="$store.state.selectedProduct"/>
+    <Modal v-if="showModal"  :product="$store.state.selectedProduct"/>
     <Header/>
     <Shop/>
   </div>
@@ -35,14 +35,22 @@ export default {
     http.getProducts()
         .then((resp) => {
           //@TODO insert product data in store
+          const categories = new Set();
           const products = resp.data.map(p => {
+            categories.add(p.category);
             return new ProductModel(p);
           });
-          this.$store.dispatch('setProducts', products);
+          this.$store.dispatch('setProducts', { products, categories });
         })
         .catch((err) => {
           console.log(err);
         })
+
+    // Populate cart from local storage if any
+    const storageCart = localStorage.getItem('cart');
+    if (storageCart) {
+      this.$store.commit('fillCartFromLocalStorage', JSON.parse(storageCart));
+    }
   },
   computed: {
     showModal() {

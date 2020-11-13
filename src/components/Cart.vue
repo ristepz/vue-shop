@@ -1,5 +1,5 @@
 <template>
-  <ul class="list-group">
+  <ul id="vue-cart" class="list-group">
     <li class="list-group-item d-flex justify-content-between align-items-center">
       Cart
       <span class="badge badge-primary badge-pill">{{ cart.length }}</span>
@@ -10,7 +10,7 @@
       <button type="button" @click="removeProduct(product.ID)" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
-      <span class="price" v-html="price(product.Price)"></span>
+      <span class="price" v-html="price(product.Price, product.quantity)"></span>
     </li>
     <li class="list-group-item d-flex justify-content-between align-items-center">
       Total: {{totalCartVal}}
@@ -30,8 +30,8 @@ export default {
     }
   },
   methods: {
-    price(price) {
-      return `<strong>${this.$store.state.currency}</strong> ${price}`;
+    price(price, qty) {
+      return `<strong>${this.$store.state.currency}</strong> ${price}&nbsp;&nbsp;X&nbsp;&nbsp;${qty}`;
     },
     removeProduct(ID) {
       this.$store.commit('removeFromCart', ID)

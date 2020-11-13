@@ -13,6 +13,8 @@
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
+        <span class="cart-icon" @click="toggleCartView()"><i>{{cart.length}}</i></span>
+        <Cart v-show="showCart" />
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
@@ -21,13 +23,67 @@
 </template>
 
 <script>
+import Cart from './Cart.vue';
 export default {
-  name: "Header"
+  name: "Header",
+  data(){
+    return {
+      showCart: false
+    }
+  },
+  computed:{
+    cart() {
+      return this.$store.state.cart
+    },
+  },
+  methods:{
+    toggleCartView(){
+      this.showCart = !this.showCart;
+    }
+  },
+  components: {
+    Cart
+  }
 }
 </script>
 
 <style scoped>
-.navbar{
+#vue-cart{
+  position: absolute;
+  width: 460px;
+  top: 86px;
+  z-index: 9999;
+  transform: translateX(-50%);
+  -webkit-box-shadow: 0px 0px 20px 2px rgba(0,0,0,0.52);
+  -moz-box-shadow: 0px 0px 20px 2px rgba(0,0,0,0.52);
+  box-shadow: 0px 0px 20px 2px rgba(0,0,0,0.52);
+}
+.navbar {
   margin-bottom: 25px;
+}
+span.cart-icon{
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  background: url('http://localhost:3000/cart-icon.png') center center no-repeat;
+  background-size: cover;
+  cursor: pointer;
+  margin-right: 20px;
+  position: relative;
+}
+span.cart-icon i{
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #004eb0;
+  color: #fff;
+  position: absolute;
+  right: -8px;
+  top: -8px;
+  font-weight: 600;
+  font-size: 14px;
+  font-style: normal;
+  padding: 2px 4px 4px 4px;
+  text-align: center;
 }
 </style>

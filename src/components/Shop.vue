@@ -1,9 +1,9 @@
 <template>
   <div class="row">
-    <div class="col-sm-4 filters">
-      <Cart/>
+    <div class="col-sm-3 filters">
+      <Filters />
     </div>
-    <div class="col-sm-8">
+    <div class="col-sm-9">
       <div class="row">
         <template v-for="(p, index) in products">
           <Product :product="p"/>
@@ -16,7 +16,7 @@
 
 <script>
 import Product from './Product.vue';
-import Cart from './Cart.vue';
+import Filters from "./Filters.vue";
 
 export default {
   name: "Shop",
@@ -27,7 +27,7 @@ export default {
   },
   components: {
     Product,
-    Cart
+    Filters
   }
 }
 </script>
