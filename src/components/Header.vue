@@ -9,12 +9,17 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          <router-link class="nav-link" to="/">Home</router-link>
+        </li>
+        <li>
+          <router-link class="nav-link" to="/about">About</router-link>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
-        <span class="cart-icon" @click="toggleCartView()"><i>{{cart.length}}</i></span>
-        <Cart v-show="showCart" />
+        <template v-if="$store.state.showCart">
+          <span class="cart-icon" @click="toggleCartView()"><i>{{ cart.length }}</i></span>
+          <Cart v-show="showCart"/>
+        </template>
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
@@ -24,20 +29,21 @@
 
 <script>
 import Cart from './Cart.vue';
+
 export default {
   name: "Header",
-  data(){
+  data() {
     return {
       showCart: false
     }
   },
-  computed:{
+  computed: {
     cart() {
       return this.$store.state.cart
     },
   },
-  methods:{
-    toggleCartView(){
+  methods: {
+    toggleCartView() {
       this.showCart = !this.showCart;
     }
   },
@@ -48,20 +54,22 @@ export default {
 </script>
 
 <style scoped>
-#vue-cart{
+#vue-cart {
   position: absolute;
   width: 460px;
   top: 86px;
   z-index: 9999;
   transform: translateX(-50%);
-  -webkit-box-shadow: 0px 0px 20px 2px rgba(0,0,0,0.52);
-  -moz-box-shadow: 0px 0px 20px 2px rgba(0,0,0,0.52);
-  box-shadow: 0px 0px 20px 2px rgba(0,0,0,0.52);
+  -webkit-box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.52);
+  -moz-box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.52);
+  box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.52);
 }
+
 .navbar {
   margin-bottom: 25px;
 }
-span.cart-icon{
+
+span.cart-icon {
   display: inline-block;
   width: 50px;
   height: 50px;
@@ -71,7 +79,8 @@ span.cart-icon{
   margin-right: 20px;
   position: relative;
 }
-span.cart-icon i{
+
+span.cart-icon i {
   width: 26px;
   height: 26px;
   border-radius: 50%;

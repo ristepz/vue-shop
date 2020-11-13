@@ -2,15 +2,15 @@
   <div class="col product">
     <div class="prd-image"
          :style="{background: `url(${product.Image}) center center no-repeat`}"
-         @click="loadLargeImage(product)"></div>
+         @click="goToDetails(product.Title)"></div>
     <h3 class="product-title" :title="product.Title">{{ productTitle }}</h3>
     <div class="product-price">
       <div class="row">
         <div class="col">
-          <strong>{{$store.state.currency}}</strong> {{product.Price}}
+          <strong>{{ $store.state.currency }}</strong> {{ product.Price }}
         </div>
         <div class="col">
-          <input type="number" class="inline-el form-control qty-field" v-model="qty" min="1" />
+          <input type="number" class="inline-el form-control qty-field" v-model="qty" min="1"/>
           <span class="inline-el">Qty.</span>
         </div>
       </div>
@@ -50,7 +50,10 @@ export default {
     loadLargeImage(product) {
       this.$store.commit('selectProduct', product);
     },
-    addToCart(){
+    goToDetails(productName) {
+      this.$router.push(`/details/${productName}`)
+    },
+    addToCart() {
       // const clonedProduct = JSON.parse(JSON.stringify(this.product));
       const clonedProduct = Object.assign({}, this.product);
       clonedProduct.quantity = this.qty;
@@ -92,11 +95,12 @@ div.product-price {
   margin-bottom: 14px;
 }
 
-.inline-el{
+.inline-el {
   display: block;
   float: right;
 }
-.qty-field{
+
+.qty-field {
   width: 70px;
   margin: 0 5px 0 10px;
 }

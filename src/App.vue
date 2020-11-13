@@ -1,15 +1,14 @@
 <template>
   <div class="container-fluid">
-    <Modal v-if="showModal"  :product="$store.state.selectedProduct"/>
+    <Modal v-if="showModal" :product="$store.state.selectedProduct"/>
     <Header/>
-    <Shop/>
+    <router-view/>
   </div>
 </template>
 
 <script>
 import { Http } from './services/Http';
 import { ProductModel } from './models/ProductModel';
-import Shop from './components/Shop.vue';
 import Header from './components/Header.vue';
 import Modal from './components/Modal.vue';
 
@@ -58,7 +57,6 @@ export default {
     }
   },
   components: {
-    Shop,
     Header,
     Modal
   }

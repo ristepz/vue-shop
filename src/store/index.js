@@ -8,7 +8,8 @@ export const store = createStore({
       selectedProduct: null,
       cart: [],
       categories: [],
-      selectedCategory: null
+      selectedCategory: null,
+      showCart: true
     };
   },
   mutations: {
@@ -86,6 +87,23 @@ export const store = createStore({
      */
     clearCatFilter(state) {
       state.selectedCategory = null;
+    },
+    /**
+     * Clear cart
+     * @param state
+     */
+    clearCart(state) {
+      state.cart = [];
+      localStorage.setItem('cart', JSON.stringify([]))
+      state.showCart = true
+    },
+    /**
+     * Toggle cart visiblilty
+     * @param state
+     * @param payload
+     */
+    toggleCart(state, payload) {
+      state.showCart = payload
     }
   },
   actions: {

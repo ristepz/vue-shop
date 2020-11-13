@@ -13,7 +13,10 @@
       <span class="price" v-html="price(product.Price, product.quantity)"></span>
     </li>
     <li class="list-group-item d-flex justify-content-between align-items-center">
-      Total: {{totalCartVal}}
+      Total: {{ totalCartVal }}
+      <span class="badge badge-primary badge-pill"
+            v-show="showCheckoutButton"
+            @click="goToCheckout()">Go To Checkout</span>
     </li>
   </ul>
 </template>
@@ -21,11 +24,17 @@
 <script>
 export default {
   name: "Cart",
+  props: {
+    showCheckoutButton: {
+      type: Boolean,
+      default: true
+    }
+  },
   computed: {
     cart() {
       return this.$store.state.cart
     },
-    totalCartVal(){
+    totalCartVal() {
       return this.$store.getters.getTotalCartAmount
     }
   },
@@ -35,6 +44,9 @@ export default {
     },
     removeProduct(ID) {
       this.$store.commit('removeFromCart', ID)
+    },
+    goToCheckout() {
+      this.$router.push('/checkout')
     }
   }
 }
@@ -61,5 +73,9 @@ li.list-group-item span.price {
 
 li.list-group-item button {
   float: right;
+}
+
+.badge {
+  cursor: pointer;
 }
 </style>
